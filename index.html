@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock-Paper-Scissors!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+    </body>
+
+    <script>
+
+        let computerPlay = () => {
+            let computerNumberChoice = Math.floor(Math.random() *  3) + 1;
+            let computerSelection = null;
+            if (computerNumberChoice == 1) {
+                computerSelection = 'rock';
+            } else if (computerNumberChoice == 2) {
+                computerSelection = 'paper';
+            } else if (computerNumberChoice == 3) {
+                computerSelection = 'scissors'; 
+            }
+            return computerSelection;
+            
+        }
+
+        let playerPlay = () => {
+            let playerChoice = '';
+
+            
+                playerChoice = prompt('What do you choose? Rock, Paper, or Scissors.');
+                playerChoice = playerChoice.toLowerCase();
+            
+            while ((playerChoice != 'rock') && (playerChoice != 'paper') && (playerChoice != 'scissors')) {
+                console.log('That isn\'t an option!');
+                playerChoice = prompt('What do you choose? Rock, Paper, or Scissors. ', '');
+                playerChoice =  playerChoice.toLowerCase();
+            }
+                
+                return playerChoice;
+            }
+            
+        
+
+        let gameRound = () => {
+            let playerWin = false;
+            let computerWin = false;
+
+
+            playerChoice = playerPlay();
+            computerChoice = computerPlay();
+
+
+            if (playerChoice === computerChoice) {
+                console.log('Ah! It was a tie.');
+
+            } else if ((playerChoice == 'rock') && (computerChoice == 'scissors')) {
+                console.log('Nice one! The computer chose scissors!');
+                playerWin = true;
+
+            } else if ((playerChoice == 'paper') && (computerChoice == 'rock')) {
+                console.log('Got em. The computer chose rock!');
+                playerWin = true;
+                
+            } else if ((playerChoice == 'scissors') && (computerChoice == 'paper')) {
+                console.log('Yay! The computer chose paper!');
+                playerWin = true;
+
+            } else if ((playerChoice == 'rock') && (computerChoice == 'paper')) {
+                console.log('Oh no! The computer chose paper.');
+                computerWin = true;
+
+            } else if ((playerChoice == 'paper') && (computerChoice == 'scissors')) {
+                console.log('Aww man. The computer chose scissors.');
+                computerWin = true;
+
+            }  else if ((playerChoice == 'scissors') && (computerChoice == 'rock')) {
+                console.log('It got you! The computer chose rock.');
+                computerWin = true;
+            }
+
+            if (playerWin === false && computerWin === false) {
+                return null;
+            } else if (playerWin === true) {;
+                return true;
+            } else if (computerWin === true) {
+                return false;
+            }
+            
+            
+        }
+                
+
+
+
+        let playGame = () => {
+            let currentRound = 1;
+            let playerWins = 0;
+            let computerWins = 0;
+    
+            while (currentRound < 6) {
+                    let roundResult = gameRound();
+
+                    if (roundResult === null) {
+                    console.log(`Round Over! Round ${currentRound} was a tie.`);
+                } else if (roundResult === true) {
+                    console.log(`Round over! You won round ${currentRound}.`);
+                    playerWins++;
+                } else if (roundResult === false) {
+                    console.log(`Round over! You lost round ${currentRound}.`);
+                    computerWins++;
+                }
+
+                currentRound++;
+            }
+           
+            if (playerWins > computerWins) { 
+                    console.log(`Game Over! Congratulations! You won the game by coming out on top in ${playerWins} rounds!`);
+                } 
+                else if (computerWins > playerWins) {
+                    console.log(`Game Over! Oh no! You lost! The computer came out on top in ${computerWins} rounds!`);
+                } 
+                else if (playerWins === computerWins) {
+                    console.log('Game Over! The computer and you tied the game. What are the chances?!');
+            }
+        }
+
+        
+
+    </script>
+
+
+
+
+
+    </html>
